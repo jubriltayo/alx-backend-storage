@@ -9,9 +9,11 @@ CREATE PROCEDURE AddBonus(
 		IN score INT
 )
 BEGIN
+		-- create variable project_id
 		DECLARE project_id INT;
 		SELECT id INTO project_id FROM projects WHERE name = project_name;
-
+		
+		-- add new project in the absence of no project
 		IF project_id IS NULL THEN
 				INSERT INTO projects(name) VALUES (project_name);
 				SET project_id = LAST_INSERT_ID();
